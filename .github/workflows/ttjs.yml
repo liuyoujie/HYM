@@ -25,20 +25,20 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ZhiYi-N/script.git ~/script
-      - name: Use Node.js 12.x
+          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Private-Script
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
       - name: npm install
         if: env.JRTTSIGNURL
         run: |
-          cd ~/script
+          cd ~/Private-Script
           npm install
       - name: '运行 【jrtt】'
         if: env.JRTTSIGNURL
         run: |
-          cd ~/script
-          node jrtt.js
+          cd ~/Private-Script
+          node Scripts/jrtt.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
