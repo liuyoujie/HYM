@@ -1,0 +1,37 @@
+name: baidu
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '*/30 * * * *'
+  watch:
+    types: started
+  repository_dispatch:
+    types: baidu
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE }}
+        TZ: Asia/shanghai
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: npm install
+        if: env.BAIDU_COOKIE
+        run: |
+          cd ~/Scripts
+          npm install
+      - name: '运行 【baidu】'
+        if: env.BAIDU_COOKIE
+        run: |
+          cd ~/Scripts
+          node Task/baidu_speed.js
+        env:
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
