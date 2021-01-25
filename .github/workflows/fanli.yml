@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: xingliuchao/HYM/ziye
+          repository: xingliuchao/HYM
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: '运行 【fanli】'
         run: |
-          node Task/flw.js
+          node ziye/Task/flw.js
         env:
           FL_flwURL: ${{ secrets.FL_flwURL }}
           FL_flwHEADER: ${{ secrets.FL_flwHEADER }}		
