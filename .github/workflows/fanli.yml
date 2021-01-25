@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: '运行 【fanli】'
         run: |
-          node ziye/Task/flw.js
+          node Task/flw.js
         env:
           FL_flwURL: ${{ secrets.FL_flwURL }}
           FL_flwHEADER: ${{ secrets.FL_flwHEADER }}		
