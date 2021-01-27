@@ -4,7 +4,7 @@ name: ttjs
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/20 * * * *"
   watch:
     types: started
   repository_dispatch:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ZhiYi-N/script.git ~/script
+          git clone https://github.com/human619/hymzy.git ~/hymzy
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -33,12 +33,12 @@ jobs:
       - name: npm install
         if: env.JRTTSIGNURL
         run: |
-          cd ~/script
+          cd ~/hymzy
           npm install
       - name: '运行 【ttjs】'
         if: env.JRTTSIGNURL
         run: |
-          cd ~/script
+          cd ~/hymzy
           node jrtt.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
