@@ -6,7 +6,7 @@
 const $ = new Env('百度极速版')
 
 let CookieArr = [];
-let UA = `Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.24.0 info baiduboxapp/5.1.1.10 (Baidu; P2 14.2)`;
+let UA = `Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.24.0 info baiduboxapp/5.0.0.11 (Baidu; P2 13.5)`;
 const withcash = $.getdata("cash_baidu")||30;
 let tip = 0,totaltips=0;
 if ($.isNode()) {
@@ -47,12 +47,12 @@ if ($.isNode()) {
         await firstbox();
         await TaskCenter()
       }*/
-        await getsign()
-        await userInfo()
-        await coinexChange()
+        //await getsign()
+        //await userInfo()
+        //await coinexChange()
         await TaskCenter()
         await firstbox()
-        await get_pkg()
+        //await get_pkg()
         await headerBox()
         await finishTask()()
       //await drawPrize();
