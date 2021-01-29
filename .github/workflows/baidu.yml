@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+          git clone https://github.com/xingliuchao/HYM.git ~/HYM
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -26,12 +26,12 @@ jobs:
       - name: npm install
         if: env.BAIDU_COOKIE
         run: |
-          cd ~/Scripts
+          cd ~/HYM
           npm install
       - name: '运行 【baidu】'
         if: env.BAIDU_COOKIE
         run: |
-          cd ~/Scripts
-          node Task/baidu_speed.js
+          cd ~/HYM
+          node baidu.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
