@@ -1,3 +1,7 @@
+/*
+百度极速版签到任务
+本脚本默认使用chavyleung大佬和Nobyda的贴吧ck，获取方法请看大佬仓库说明，内置自动提现，提现金额默认30元
+~~~~~~~~~~~~~~~~
 */
 const $ = new Env('百度极速版')
 
@@ -55,8 +59,9 @@ if ($.isNode()) {
     }
   }
 })()
-    //.catch((e) => $.logErr(e))
+    .catch((e) => $.logErr(e))
     .finally(() => $.done())
+
 
 //签到
 function getsign() {
