@@ -7,7 +7,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: baidu
+    types: baiduN
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,5 +33,4 @@ jobs:
         run: |
           cd ~/HYM
           node baiduN.js
-        env:
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+
