@@ -55,9 +55,7 @@ if ($.isNode()) {
     }
   }
 })()
-    .catch((e) => $.logErr(e))
-    .finally(() => $.done())
-    .catch((e) => $.logErr(e))
+    //.catch((e) => $.logErr(e))
     .finally(() => $.done())
 
 //签到
