@@ -225,13 +225,13 @@ $.setdata(playheader,`playheader${status}`)
 }
 //control
 async function control(){
-   for(i = 1;i<3;i++){
+   for(i = 0;i<3;i++){
     let delay = Math.random()*10000
     $.log('⏰本次延时'+Math.round(delay/10000)+'秒')
     await sleep(delay)
     await video_rewards()
 }
-for(let i = 1;i <= 4;i++){
+for(let i = 0;i <= 4;i++){
    item_id_inv = item_id[i]
    $.log(item_id_inv)
    let x = Math.random()
