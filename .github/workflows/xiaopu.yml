@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+name: 笑谱
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '*/13 8-23 * * *'
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        
+        XP_refreshTOKEN: ${{ secrets.XP_refreshTOKEN }}
+        XP_CASH: ${{ secrets.XP_CASH }}
+        XP_live: ${{ secrets.XP_live }}
+    steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/ziye12/JavaScript.git ~/JavaScript
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        if: env.XP_refreshTOKEN
+        run: |
+          cd ~/JavaScript
+          npm install
+      - name: '运行 【笑谱】'
+        if: env.XP_refreshTOKEN
+        run: |
+          cd ~/JavaScript
+          node Task/iboxpay.js
+        env:
+          
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
