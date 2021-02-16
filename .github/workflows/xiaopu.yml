@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: 笑谱
+name: xiaopu
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ziye12/JavaScript.git ~/JavaScript
+          git clone -b ziye https://github.com/xingliuchao/HYM.git ~/HYM
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -27,12 +27,12 @@ jobs:
       - name: npm install
         if: env.XP_refreshTOKEN
         run: |
-          cd ~/JavaScript
+          cd ~/HYM
           npm install
       - name: '运行 【笑谱】'
         if: env.XP_refreshTOKEN
         run: |
-          cd ~/JavaScript
+          cd ~/HYM
           node Task/iboxpay.js
         env:
           
