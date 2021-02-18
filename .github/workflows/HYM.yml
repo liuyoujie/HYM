@@ -17,11 +17,30 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync no.1
+      - name: sync hym
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
           source_repo: "https://github.com/xingliuchao/HYM.git"
           source_branch: "main"
           destination_branch: "main"
+          github_token: ${{ secrets.PAT }}
+
+      - name: sync ZhiYi-N-script
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/ZhiYi-N/script.git"
+          source_branch: "master"
+          destination_branch: "zhiyi-n"
+          github_token: ${{ secrets.PAT }}
+          
+          
+      - name: sync ziye56-JavaScript
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/ziye66666/JavaScript.git"
+          source_branch: "main"
+          destination_branch: "ziye56"
           github_token: ${{ secrets.PAT }}
