@@ -1,0 +1,41 @@
+name: ttjs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/20 * * * *"
+  watch:
+    types: started
+  repository_dispatch:
+    types: ttjs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        JRTTSIGNURL: ${{ secrets.JRTTSIGNURL }}
+        JRTTSIGNKEY: ${{ secrets.JRTTSIGNKEY }}
+        JRTTFARMURL: ${{ secrets.JRTTFARMURL }}
+        JRTTFARMKEY: ${{ secrets.JRTTFARMKEY }}
+        JRTTREADURL: ${{ secrets.JRTTREADURL }}
+        JRTTREADKEY: ${{ secrets.JRTTREADKEY }}
+        JRTTCOLLECT: ${{ secrets.JRTTCOLLECT }} 
+        
+    steps:
+      - name: Checkout
+        run: |
+          git clone -b zhiyi-n https://github.com/xingliuchao/HYM.git ~/HYM
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: npm install
+        run: |
+          cd ~/HYM
+          npm install
+      - name: '运行 【ttjs】'
+        run: |
+          cd ~/HYM
+          node jrtt.js
+        env:
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
