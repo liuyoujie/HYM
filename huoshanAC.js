@@ -225,7 +225,7 @@ $.setdata(playheader,`playheader${status}`)
 }
 //control
 async function control(){
-   for(i = 0;i<3;i++){
+   for(i = 0;i<1;i++){
     let delay = Math.random()*10000
     $.log('⏰本次延时'+Math.round(delay/10000)+'秒')
     await sleep(delay)
