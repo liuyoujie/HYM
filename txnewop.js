@@ -76,6 +76,7 @@ if (isGetCookie) {
 
       await getsign();
       await activity();
+      await Redpack();
       await getTotal();
       await $.wait(1000);
       await StepsTotal();
