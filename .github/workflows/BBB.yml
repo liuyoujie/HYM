@@ -23,12 +23,12 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
-        if: env.XP_refreshTOKEN
+        if: env.BBB_bububaoTOKEN
         run: |
           cd ~/HYM
           npm install
       - name: '运行 【步步宝】'
-        if: env.XP_refreshTOKEN
+        if: env.BBB_bububaoTOKEN
         run: |
           cd ~/HYM
           node Task/bububao.js
