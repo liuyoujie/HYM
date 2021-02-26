@@ -225,17 +225,17 @@ $.setdata(playheader,`playheader${status}`)
 }
 //control
 async function control(){
-   for(i = 0;i<1;i++){
+   /*for(i = 1;i<3;i++){
     let delay = Math.random()*10000
-    $.log('⏰本次延时'+Math.round(delay/10000)+'秒')
+    $.log('⏰本次延时'+Math.round(delay/1000)+'秒')
     await sleep(delay)
     await video_rewards()
-}
+}*/
 for(let i = 0;i <= 4;i++){
    item_id_inv = item_id[i]
    $.log(item_id_inv)
    let x = Math.random()
-   let delay = x > 0.5? x*60000 : (x+0.5)*60000
+   let delay = x > 0.5? x*30000 : (x+0.5)*15000
    console.log('⏰本次延迟'+Math.round(delay/1000)+'秒')
    await sleep(delay)
    await play_video()
@@ -245,7 +245,7 @@ for(let i = 0;i <= 4;i++){
 //app_alert_check
 async function app_alert_check(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 let iid = hsurl.match(/iid=\d+/)
 let idfa = hsurl.match(/idfa=\d+-\d+-\w+-\w+-\w+/)
 let vid = hsurl.match(/vid=\w+-\w+-\w+-\w+-\w+/)
@@ -280,7 +280,7 @@ let check_url = 'https://ichannel.snssdk.com/service/2/app_alert_check/?'+iid+'&
 //false no function
 async function device_register(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let device_register_url = {
    		url: `https://log-lq.snssdk.com/service/2/device_register/?tt_data=a&${hsurl}`,
@@ -305,10 +305,10 @@ hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 //userinfo
 async function userinfo(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let userinfo_url = {
-   	url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/user_flame_info/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/user_flame_info/?${hsurl}`,
         headers: JSON.parse(hsheader)
     	}
    $.get(userinfo_url,async(error, response, data) =>{
@@ -335,7 +335,7 @@ hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 //gettoken
 async function gettoken(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let gettoken_url = {
    		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/janus/flame/management/panel/?${hsurl}`,
@@ -372,10 +372,10 @@ hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 //sign_in
 async function sign_in(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let sign_inurl = {
-   	url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
         headers: JSON.parse(hsheader),
         body: `__hideErrorToast=1&task_name=check_in&token=${signtoken}`
     	}
@@ -402,11 +402,11 @@ hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
 //ad
 async function ad(){
 let new_time = Math.round(new Date().getTime()/1000).toString();
-hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
  return new Promise((resolve) => {
     let ad_url = {
    		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_system/task_done/?${hsurl}`,
-    headers: JSON.parse(hsheader),
+    	headers: JSON.parse(hsheader),
      body: `__hideErrorToast=1&task_name=ad&token=${adtoken}`
     	}
    $.post(ad_url,async(error, response, data) =>{
@@ -485,6 +485,9 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
         //message = `🎈视频播放成功${no}次，获取奖励${no}次\n`
         }else{
         console.log('视频播放失败'+result.extra.details+'\n')
+        no = no + 1;
+        await video_rewards()
+        
 }
         }catch(e) {
           $.logErr(e, response);
@@ -499,9 +502,10 @@ let newplaybody = playbody.replace(/\d{19}/,`${item_id_inv}`)
 async function video_rewards(){
 	let new_time = Math.round(new Date().getTime()/1000).toString();
 	hsheader = hsheader.replace(/X-Khronos":"\d{10}/,`X-Khronos":"${new_time}`)
+        let url = hsurl.replace(/device_platform=\w+/,'device_platform=android')
  return new Promise((resolve) => {
     let video_rewards_url = {
-   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${hsurl}`,
+   		url: `https://api3-normal-c-lq.huoshan.com/hotsoon/flame/task_done/?${url}`,
     	headers: JSON.parse(hsheader),
     	body: hsbody
     	}
