@@ -4,7 +4,7 @@ name: xiaopu
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/26 8-23 * * *'
+     - cron: '25,50 8-23 * * *'
   watch:
     types: started
 jobs:
