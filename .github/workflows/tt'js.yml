@@ -21,7 +21,7 @@ jobs:
                   npm install
             - name: "运行 【t'tjs】"
               run: |
-                  node xlctb.js
+                  node xlcsecret-All.js
               env:
                   JRTTSIGNURL: ${{ secrets.JRTTSIGNURL }}
                   JRTTSIGNKEY: ${{ secrets.JRTTSIGNKEY }}
