@@ -30,7 +30,7 @@ jobs:
       - name: '运行 【yangmz】'
         run: |
              cd ~/HYM
-             node ymzhuan.js
+             node Task/ymzhuan.js
         env:
           YMZ_ymzhuanggBODY: ${{ secrets.YMZ_ymzhuanggBODY }}
           YMZ_ymzhuanspBODY: ${{ secrets.YMZ_ymzhuanspBODY }}
