@@ -1,0 +1,37 @@
+name: yangmz
+
+on:
+  workflow_dispatch:
+  schedule:
+      - cron: '0 8,7 * * *'
+  watch:
+    types: started
+  repository_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env: 
+        TZ: Asia/shanghai
+    steps:
+      - name: Checkout
+        run: |
+          git clone -b ziye56 https://github.com/xingliuchao/HYM.git ~/HYM
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          cd ~/HYM
+          npm install
+        
+   
+      - name: '运行 【yangmz】'
+        run: |
+             cd ~/HYM
+             node Task/bububao.js
+        env:
+          YMZ_ymzhuanggBODY: ${{ secrets.YMZ_ymzhuanggBODY }}
+          YMZ_ymzhuanspBODY: ${{ secrets.YMZ_ymzhuanspBODY }}
+          YMZ_ymzhuantxBODY: ${{ secrets.YMZ_ymzhuantxBODY }}
