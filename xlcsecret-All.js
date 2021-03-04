@@ -43,7 +43,7 @@ async function changeFiele(content, cookie) {
  
     newContent =newContent.replace(/var Key = ''/, `var Key = '${cookie}'`);
        if (!HELPURL)  
-      console.log(`木有互助码数据，请在secret中加入朱丽娜网址`);
+      console.log(`木有互助码数据，请在secret中加入互助网址`);
       else
      newContent =newContent.replace(`https://raw.githubusercontent.com/XLC/jd/main/ShareCodes`, `${HELPURL}` );
       await fs.writeFileSync( './temp.js', newContent, 'utf8')
@@ -147,21 +147,21 @@ if (st[i]==("ぃ"))
 {fn1=st.substr(i,1);
 st=st.replace(fn1,"********");}
  
- if (st[i]==("①"))
- {fn1=st.substr(i,1);
- st=st.replace(fn1,"*******");}
+if (st[i]==("①"))
+{fn1=st.substr(i,1);
+st=st.replace(fn1,"*******");}
  
- if (st[i]==("一"))
- {fn1=st.substr(i,1);
- st=st.replace(fn1,"****");}
+if (st[i]==("一"))
+{fn1=st.substr(i,1);
+st=st.replace(fn1,"****");}
  
- if (st[i]==("18"))
- {fn1=st.substr(i,1);
- st=st.replace(fn1,"******");}
+if (st[i]==("182"))
+{fn1=st.substr(i,1);
+st=st.replace(fn1,"******");}
 
 if (st[i]==("lit"))
 {fn1=st.substr(i,1);
-st=st.replace(fn1,"*************");}
+st=st.replace(fn1,"*********");}
  
 if (st[i]==("现金"))
 {fn1=st.substr(i,1);
@@ -169,7 +169,14 @@ st=st.replace(fn1,"***");}
    
 if (st[i]==("券"))
 {fn1=st.substr(i,1);
-st=st.replace(fn1,"********");}
+st=st.replace(fn1,"*****");}
+   
+if (st[i]==("步"))
+{fn1=st.substr(i,1);
+st=st.replace(fn1,"*****");}
+   
+   
+   
 }
 
 return st
