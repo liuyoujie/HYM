@@ -1,0 +1,33 @@
+name: qqreapp
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '*/30 * * * *'
+  watch:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+            - name: npm install
+              run: |
+                  npm install
+            - name: "运行 【QQreadapp】"
+              run: |
+                  node xlcsecret-All.js
+              env:
+                  QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
+                  QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD }}
+                  TZ: Asia/shanghai
+                  EFORK: ${{ secrets.EFORK }}
+                  GITHUB: ${{ secrets.GITHUB }}
+                  XLC: ${{ secrets.XLC }}
+                  #/HYM/-n/
+                  SYNCURL: https://raw.githubusercontent.com/xingliuchao/HYM/main/QQreadapp.js
+                  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+                  TG_USER_ID: ${{ secrets.TG_USER_ID }}
