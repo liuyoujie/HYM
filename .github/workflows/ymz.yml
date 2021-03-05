@@ -15,6 +15,7 @@ jobs:
         YMZ_ymzhuanggBODY: ${{ secrets.YMZ_ymzhuanggBODY }}
         YMZ_ymzhuanspBODY: ${{ secrets.YMZ_ymzhuanspBODY }}
         YMZ_ymzhuantxBODY: ${{ secrets.YMZ_ymzhuantxBODY }}
+        YMZ_CASH: ${{ secrets.YMZ_ymzhuantxBODY }}
     steps:
       - name: Checkout
         run: |
