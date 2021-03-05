@@ -1,0 +1,35 @@
+name: zhima
+on:
+  workflow_dispatch:
+   schedule:
+    - cron: '35 * * * *'
+  watch:
+    types: started
+  repository_dispatch:
+    types: zhima
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env: 
+        TZ: Asia/shanghai
+    steps:
+      - name: Checkout
+        run: |
+          git clone -b ziye56 https://github.com/xingliuchao/HYM.git ~/HYM
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          cd ~/HYM
+          npm install
+      - name: '运行 【zhima】'
+        run: |
+             cd ~/HYM
+             node Task/zhima.js
+        env:
+           ZM_zhimabody: ${{ secrets.ZM_zhimabody }}
+           ZM_zhimatxbody: ${{ secrets.ZM_zhimatxbody }}
+           ZM_CASH: ${{ secrets.ZM_CASH }}
